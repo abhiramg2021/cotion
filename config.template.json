@@ -1,0 +1,14 @@
+{
+  "CANVAS": {
+    "DOMAIN": "",
+    "TOKEN": ""
+  },
+  "NOTION": {
+    "TOKEN": "",
+    "DATABASE_ID": ""
+  },
+  "COURSES": {
+    "XX 0000": 11111
+  },
+  "LAST_RUN_DATE": "2000-01-01"
+}
