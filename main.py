@@ -32,6 +32,7 @@ computer_flag = "--computer" in sys.argv
 
 
 def should_run_script():
+    """Check if the script should run based on the last run timestamp."""
     # Check if the override flag is set
     force_flag = "--force" in sys.argv
 
@@ -59,7 +60,7 @@ def should_run_script():
 
 
 def update_timestamp_file():
-    # Write the current date to the timestamp file
+    """Update the timestamp file with the current date."""
     current_date = datetime.datetime.now().date()
     with open(timestamp_file_path, "w") as file:
         file.write(current_date.strftime("%Y-%m-%d"))
@@ -96,7 +97,6 @@ def get_canvas_assignments(domain, canvas_token, course_id):
         raise Exception(message)
 
 
-# load notion assignments into a dictionary
 def get_notion_assignments(database_id):
     """Use the notion api to load in the entries in the database"""
 
@@ -141,6 +141,7 @@ def get_notion_assignments(database_id):
 
 
 def add_notion_assignment(topic, title, due=None):
+    """Add a new assignment to the notion database"""
     print(topic, "New Assignment:", title, "due:", due)
     data = {
         "Topic": {
@@ -162,6 +163,7 @@ def add_notion_assignment(topic, title, due=None):
 
 
 def update_notion_assignment(page_id, topic, title, due):
+    """Update an existing assignment in the notion database"""
     print(topic, "Update Assignment:", title, "due:", due)
     page_id_to_update = page_id
 
@@ -191,19 +193,24 @@ def update_notion_assignment(page_id, topic, title, due):
 
 
 if should_run_script():
+
+    # get all the Canvas assigments
     for course, _id in courses.items():
         course_assignments = get_canvas_assignments(domain, canvas_token, _id)
         canvas_assignments[course] = course_assignments
 
     notion_assignments = get_notion_assignments(database_id)
 
+    # compare the canvas assignments to the notion assignments
     for course, assignments in canvas_assignments.items():
         for assignment in assignments:
             title = assignment["name"]
             due = assignment["due"]
             topic = course
 
-            assignment_id = f"{title}:{topic}"
+            assignment_id = (
+                f"{title}:{topic}"  # this is the unique identifier for the assignment
+            )
 
             if (
                 assignment_id in notion_assignments
