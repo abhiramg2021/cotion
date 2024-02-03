@@ -1,5 +1,4 @@
 from canvasapi import Canvas
-from typing import NamedTuple
 from assignment import Assignment
 
 
@@ -13,7 +12,7 @@ class CanvasAPIClient:
 
     def __init__(self, domain: str, token: str) -> None:
         self.canvas = Canvas(domain, token)
-        self.assignments = set()
+        self.assignments = list()
 
     def read_assignments_for_course(self, course_id: int, course_name: str) -> None:
         """Given a course_id, get the assignments for that course using the Canvas API, and add them to self.assignments"""
@@ -29,4 +28,4 @@ class CanvasAPIClient:
                 else None
             )
 
-            self.assignments.add(Assignment(name, due, course_name))
+            self.assignments.append(Assignment(name, due, course_name))
