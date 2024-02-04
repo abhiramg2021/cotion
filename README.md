@@ -50,4 +50,4 @@ Remember, this database should have the following properties:
 
 ### More on the `--computer` flag
 
-If you cloned the repo to your `Downloads` folder, then add this to your terminal startup process (.zshrc or .bashrc): `eval "python ~/Downloads/Cotion/main.py --computer"`
+If you cloned the repo to your `Downloads` folder, then add this to your terminal startup process (.zshrc or .bashrc): `eval "python3 ~/Downloads/Cotion/main.py --computer"`

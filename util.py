@@ -1,6 +1,11 @@
 import sys
+import os
 import json
 from datetime import datetime
+
+# Get the absolute path to the the config file
+script_dir = os.path.dirname(os.path.abspath(__file__))
+json_file_path = os.path.join(script_dir, "config.json")
 
 
 def parse_flags() -> dict:
@@ -16,7 +21,7 @@ def parse_flags() -> dict:
 
 def parse_config_file() -> dict:
     """Parse the config file"""
-    with open("./config.json", "r") as file:
+    with open(json_file_path, "r") as file:
         config = json.load(file)
     return config
 
@@ -48,5 +53,5 @@ def update_timestamp(config: dict):
     """Update the timestamp file with the current date."""
     current_date = datetime.now().date()
     config["LAST_RUN_DATE"] = current_date.strftime("%Y-%m-%d")
-    with open("./config.json", "w") as file:
+    with open(json_file_path, "w") as file:
         json.dump(config, file)
