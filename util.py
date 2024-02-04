@@ -16,7 +16,7 @@ def parse_flags() -> dict:
 
 def parse_config_file() -> dict:
     """Parse the config file"""
-    with open("config.json", "r") as file:
+    with open("./config.json", "r") as file:
         config = json.load(file)
     return config
 
@@ -48,5 +48,5 @@ def update_timestamp(config: dict):
     """Update the timestamp file with the current date."""
     current_date = datetime.now().date()
     config["LAST_RUN_DATE"] = current_date.strftime("%Y-%m-%d")
-    with open("config.json", "w") as file:
+    with open("./config.json", "w") as file:
         json.dump(config, file)
