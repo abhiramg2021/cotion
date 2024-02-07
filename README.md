@@ -47,7 +47,3 @@ Remember, this database should have the following properties:
 
 - `--force` If this flag is specified, the script will run even though it was already run today.
 - `--computer` I specified this flag so that I can run the script on my computer as a startup process on my terminal. This flag suppresses some print warnings that would be annoying otherwise everytime that I opened a new terminal.
-
-### More on the `--computer` flag
-
-If you cloned the repo to your `Downloads` folder, then add this to your terminal startup process (.zshrc or .bashrc): `eval "python3 ~/Downloads/Cotion/main.py --computer"`
