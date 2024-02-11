@@ -1,0 +1,2 @@
+[console_scripts]
+cotion = cotion.main:main
